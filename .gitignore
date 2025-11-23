@@ -1,1 +1,33 @@
+# Local environment files
 .env
+*.env
+
+# Terraform directories
+.terraform/
+.terraform/*
+
+# Terraform state files (never commit!)
+terraform.tfstate
+terraform.tfstate.*
+*.tfstate
+*.tfstate.*
+
+# Crash logs and backups
+crash.log
+crash.*.log
+
+# Sensitive var files
+terraform.tfvars
+*.tfvars
+*.tfvars.json
+
+# Override files (local only)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI output files
+plan.out
+tfplan
+tfplan.*
