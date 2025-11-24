@@ -1,5 +1,6 @@
 output "db_endpoint" {
-  value = aws_db_instance.acme.address
+  description = "Database endpoint"
+  value       = aws_db_instance.acme.address
 }
 
 output "db_port" {
@@ -7,9 +8,7 @@ output "db_port" {
 }
 
 output "db_username" {
-  value = aws_db_instance.acme.username
+  value = local.postgres_secret.username
 }
 
-output "db_name" {
-  value = aws_db_instance.acme.db_name
-}
+# NOTE: Password is NOT output (must be read via Secrets Manager)
