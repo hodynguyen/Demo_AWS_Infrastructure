@@ -21,7 +21,7 @@ The system includes four components:
 - AWS VPC, Subnets, IGW, NAT, ALB, ACM, Route53  
 - AWS RDS PostgreSQL (Multi-AZ)  
 - AWS EKS: Deployments, Services, Ingress, Autoscalers  
-- ExternalDNS, Cert-Manager, IAM OIDC, IRSA  
+- ExternalDNS *(future work – controller pending)*, Cert-Manager *(future work – currently using pre-issued ACM certs)*, IAM OIDC, IRSA  
 - Terraform for Infrastructure-as-Code  
 - Docker images deployed on Kubernetes  
 - CloudWatch, CloudTrail, S3 (optional logs/backups)
@@ -48,8 +48,8 @@ Ensure images exist:
 
 
 ### Terraform Remote Backend
-- S3 bucket for terraform state  
-- DynamoDB table for state locking  
+- S3 bucket for terraform state *(future work – state still local)*  
+- DynamoDB table for state locking *(future work)*  
 
 ### Kubernetes Files Prepared
 - Deployment manifests for UI, API, Metrics Collector  
@@ -129,7 +129,7 @@ While staying **non-public**.
 
 Deploy:
 - NAT Gateway A → public-a  
-- NAT Gateway B → public-b (optional for HA)
+- NAT Gateway B → public-b (optional for HA, *future work – only one NAT provisioned today*)
 
 ---
 
@@ -205,13 +205,15 @@ API receives connection via `POSTGRES_URL`.
 - VPC CNI  
 - CoreDNS  
 - kube-proxy  
-- Metrics Server  
+- Metrics Server *(future work – not deployed yet)*  
 - AWS Load Balancer Controller  
-- Cluster Autoscaler  
+- Cluster Autoscaler *(future work – only documented steps exist)*
 
 ---
 
 # 8. Deploy Workloads on EKS
+
+> **Note:** UI/API/Metrics manifests are provided as mocks because the supplied Docker images/domains are fictional; apply them once real images and certificates exist.
 
 ## UI Deployment (acme/ui)
 - Deployment (replicas 2 minimum)
@@ -246,7 +248,7 @@ Records:
 - `www.acme.com` → ALB  
 - `api.acme.com` → ALB  
 
-ExternalDNS manages automatic updates.
+ExternalDNS manages automatic updates *(future work – controller not yet deployed; Route53 records are manual/placeholder)*.
 
 ---
 
