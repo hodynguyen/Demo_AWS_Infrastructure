@@ -31,11 +31,11 @@ module "alb_controller" {
   public_subnet_ids         = module.vpc.public_subnet_ids
 }
 
-module "route53" {
-  source = "./route53"
-
-  # FAKE domain, replace with real one when available
-  root_domain = "acme.com" # FAKE VALUE
-}
+# module "route53" {
+#   source = "./route53"
+# 
+#   # FAKE domain, replace with real one when available
+#   root_domain = "acme.com" # FAKE VALUE
+# }
 
 
