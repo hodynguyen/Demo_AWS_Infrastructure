@@ -35,7 +35,7 @@ module "route53" {
   source = "./route53"
 
   # FAKE domain, replace with real one when available
-  root_domain = "acme.com"   # FAKE VALUE
+  root_domain = "acme.com" # FAKE VALUE
 }
 
 
